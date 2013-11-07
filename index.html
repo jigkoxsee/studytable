@@ -51,14 +51,8 @@
             nb=patt2.lastIndex;
             btime=btxt.substring(nb-1,nb+1);
 
-            aday=atxt.substring(0,na-3);//.trim();
-            bday=btxt.substring(0,nb-3);//.trim();
-
-           /* if (thDay(aday) < thDay(bday))
-                return -1;
-            if (thDay(aday) > thDay(bday))
-                return 1;
-            return 0;*/
+            aday=atxt.substring(0,na-3);
+            bday=btxt.substring(0,nb-3);
 
             if ((aday) < (bday))
                 return -1;
@@ -82,12 +76,9 @@
             nb=patt2.lastIndex;
             btime=btxt.substring(nb-1,nb+1);
 
-            aday=atxt.substring(0,na-3);//.trim();
-            bday=btxt.substring(0,nb-3);//.trim();
-
-           if (thDay(aday) < thDay(bday))
+           if (atime < btime)
                 return -1;
-            if (thDay(aday) > thDay(bday))
+            if (atime > btime)
                 return 1;
             return 0;
         }
@@ -185,33 +176,72 @@
                     default://7
                       subject_7.push(subject_all[i]);
                 }
-
             }
         }
 
         // print
-        for (var i=0;i<number;i++)
-        { 
-            studytime = subject_all[i].studytime.innerHTML;
-            if(lastDay=="0"){
-                lastDay=studytime.substring(0,studytime.indexOf("."));
+        //for (var i=0;i<number;i++){ 
+            function printSubjectInDate(entry){
                 $("body").append("<br/>");
-                $("body").append(studytime.substring(0,studytime.indexOf(".")+1));
+                $("body").append(entry.studytime.innerHTML.substring(studytime.indexOf(".")+2,studytime.indexOf(".")+14));
+                $("body").append(" "+entry.sname.innerHTML);
+                $("body").append(" ( SEC: "+entry.section.innerHTML+")");
             }
-            else if(lastDay!=studytime.substring(0,studytime.indexOf("."))){
-                lastDay=studytime.substring(0,studytime.indexOf("."));
-                $("body").append("<br/>");
-                $("body").append("<br/>");
-                $("body").append(studytime.substring(0,studytime.indexOf(".")+1));
-            }
-            if(lastDay==studytime.substring(0,studytime.indexOf("."))){
-                //display a subject detail
-                $("body").append("<br/>");
-                $("body").append(studytime.substring(studytime.indexOf(".")+1,studytime.indexOf(".")+14));
-                $("body").append(subject_all[i].sname.innerHTML);                
-                $("body").append("( SEC: "+subject_all[i].section.innerHTML+")");
-            }
-        }
+
+
+            subject_1.sort(compareTime);
+            subject_2.sort(compareTime);
+            subject_3.sort(compareTime);
+            subject_4.sort(compareTime);
+            subject_5.sort(compareTime);
+            subject_6.sort(compareTime);
+            subject_7.sort(compareTime);
+
+
+            $("body").append("<br/>DAY 1 :");
+            $("body").append(subject_1[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
+            subject_1.forEach(function(entry) {
+                printSubjectInDate(entry);
+                
+            });
+
+            $("body").append("<br/>DAY 2 :");
+            $("body").append(subject_2[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
+            subject_2.forEach(function(entry) {
+                printSubjectInDate(entry);
+            });
+
+            $("body").append("<br/>DAY 3 :");
+            $("body").append(subject_3[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
+            subject_3.forEach(function(entry) {
+                printSubjectInDate(entry);
+            });
+
+            $("body").append("<br/>DAY 4 :");
+            $("body").append(subject_4[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
+            subject_4.forEach(function(entry) {
+                printSubjectInDate(entry);
+            });
+
+            $("body").append("<br/>DAY 5 :");
+            $("body").append(subject_5[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
+            subject_5.forEach(function(entry) {
+                printSubjectInDate(entry);
+            });
+
+            $("body").append("<br/>DAY 6 :");
+            //$("body").append(subject_6[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1)+"<br/>");
+            subject_6.forEach(function(entry) {
+                printSubjectInDate(entry);
+            });
+
+            $("body").append("<br/>DAY 7 :");
+            //$("body").append(subject_7[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1)+"<br/>");
+            subject_7.forEach(function(entry) {
+                printSubjectInDate(entry);
+            });
+
+        //}
     }
     </script>
 
