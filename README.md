@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 VerbalExpressions v0.1
 =====================
 
@@ -101,3 +102,7 @@ Check out these slide decks for handy Github & git tips:
 
 [ben-nadel]:http://www.bennadel.com/
 [extending]:http://www.bennadel.com/blog/2292-Extending-JavaScript-Arrays-While-Keeping-Native-Bracket-Notation-Functionality.htm
+=======
+studytable
+==========
+>>>>>>> 9d685587e5837a58108264479f3bbc104c5575b4
