@@ -1,24 +1,22 @@
 function getTB(){
         //thai day formation
         function thDay(d){
-            console.log("DATE:"+d+"๏ฟฝ");
-            if(d=="เธ"){
-                console.log(1);
+            if(d=="จ"){
                 return 1;
             }
-            else if(d=="เธญ"){
+            else if(d=="อ"){
                 return 2;
             }
-            else if(d=="เธ"){
+            else if(d=="พ"){
                 return 3;
             }
-            else if(d=="เธเธค"){
+            else if(d=="พฤ"){
                 return 4;
             }
-            else if(d=="เธจ"){
+            else if(d=="ศ"){
                 return 5;
             }
-            else if(d=="เธช"){
+            else if(d=="ส"){
                 return 6;
             }
             else{
@@ -43,9 +41,9 @@ function getTB(){
             aday=atxt.substring(0,na-3);
             bday=btxt.substring(0,nb-3);
 
-            if ((aday) < (bday))
+            if (thDay(aday) < thDay(bday))
                 return -1;
-            if ((aday) > (bday))
+            if (thDay(aday) > thDay(bday))
                 return 1;
             return 0;
         }
@@ -65,7 +63,7 @@ function getTB(){
             nb=patt2.lastIndex;
             btime=btxt.substring(nb-1,nb+1);
 
-            if (atime < btime)
+           if (atime < btime)
                 return -1;
             if (atime > btime)
                 return 1;
@@ -113,7 +111,7 @@ function getTB(){
             subject_all[i]=subject;
         }
         
-        $("body").empty();
+       $("body").empty();
 
         subject_all.sort(compare);
 
@@ -145,25 +143,25 @@ function getTB(){
                 switch(noOfDayInWeek)
                 {
                     case 1:
-                    subject_1.push(subject_all[i]);
-                    break;
+                        subject_1.push(subject_all[i]);
+                        break;
                     case 2:
-                    subject_2.push(subject_all[i]);
-                    break;
+                        subject_2.push(subject_all[i]);
+                        break;
                     case 3:
-                    subject_3.push(subject_all[i]);
-                    break;
+                        subject_3.push(subject_all[i]);
+                        break;
                     case 4:
-                    subject_4.push(subject_all[i]);
-                    break;
+                        subject_4.push(subject_all[i]);
+                        break;
                     case 5:
-                    subject_5.push(subject_all[i]);
-                    break;
+                        subject_5.push(subject_all[i]);
+                        break;
                     case 6:
-                    subject_6.push(subject_all[i]);
-                    break;
+                        subject_6.push(subject_all[i]);
+                        break;
                     default://7
-                    subject_7.push(subject_all[i]);
+                      subject_7.push(subject_all[i]);
                 }
             }
         }
@@ -171,10 +169,13 @@ function getTB(){
         // print
         //for (var i=0;i<number;i++){ 
             function printSubjectInDate(entry){
-                $("body").append("<br/>");
-                $("body").append(entry.studytime.innerHTML.substring(studytime.indexOf(".")+2,studytime.indexOf(".")+14));
+                $("body").append("<p>");
+    //$("body").append(entry.studytime.innerHTML.substring(studytime.indexOf(".")+2,studytime.indexOf(".")+14));
                 $("body").append(" "+entry.sname.innerHTML);
-                $("body").append(" ( SEC: "+entry.section.innerHTML+")");
+                $("body").append(" ( SEC: "+entry.section.innerHTML+")<br/>");
+                $("body").append(" "+entry.room.innerHTML);
+                $("body").append(" : "+entry.build.innerHTML);
+                $("body").append("</p>");
             }
 
 
@@ -188,32 +189,32 @@ function getTB(){
 
 
             $("body").append("<br/>DAY 1 :");
-            $("body").append(subject_1[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
+            $("body").append(subject_1[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
             subject_1.forEach(function(entry) {
                 printSubjectInDate(entry);
                 
             });
 
             $("body").append("<br/>DAY 2 :");
-            $("body").append(subject_2[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
+            $("body").append(subject_2[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
             subject_2.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
 
             $("body").append("<br/>DAY 3 :");
-            $("body").append(subject_3[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
+            $("body").append(subject_3[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
             subject_3.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
 
             $("body").append("<br/>DAY 4 :");
-            $("body").append(subject_4[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
+            $("body").append(subject_4[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
             subject_4.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
 
             $("body").append("<br/>DAY 5 :");
-            $("body").append(subject_5[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
+            $("body").append(subject_5[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
             subject_5.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
