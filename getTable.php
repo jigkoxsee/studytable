@@ -18,9 +18,16 @@
 <body>
 	<h1>HELLO</h1>
 	<div class="main" ng-app="">
-	<input type="text" class="inbox" >
-	{{5*8}}
-	<h1>{{data.message}}</h1>
+		<input type="text" class="inbox" >
+		{{5*8}}
+		<h1>{{data.message}}</h1>
+
+
+		<div ng-controller="CtrlTable">
+
+			<h1>{{"test : "+data.header}}</h1>
+
+		</div>
 	</div>
 	
 
