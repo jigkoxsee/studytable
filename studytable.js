@@ -1,34 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Language" content="th">
-    <!-- <meta http-equiv="Content-Type" content="text/html; charset=/windows-874"> -->
-    <title>VerbalExpressions example</title>
-
-    <script src='http://161.246.5.237/web/jsregex/jquery-1.10.2.js' type='text/javascript'></script>
-    <script src='http://161.246.5.237/web/jsregex/angular.js' type='text/javascript'></script>
-
-
-    <script>
-    function getTB(){
+function getTB(){
         //thai day formation
         function thDay(d){
-            if(d=="จ"){
+            console.log("DATE:"+d+"๏ฟฝ");
+            if(d=="เธ"){
+                console.log(1);
                 return 1;
             }
-            else if(d=="อ"){
+            else if(d=="เธญ"){
                 return 2;
             }
-            else if(d=="พ"){
+            else if(d=="เธ"){
                 return 3;
             }
-            else if(d=="พฤ"){
+            else if(d=="เธเธค"){
                 return 4;
             }
-            else if(d=="ศ"){
+            else if(d=="เธจ"){
                 return 5;
             }
-            else if(d=="ส"){
+            else if(d=="เธช"){
                 return 6;
             }
             else{
@@ -53,9 +43,9 @@
             aday=atxt.substring(0,na-3);
             bday=btxt.substring(0,nb-3);
 
-            if (thDay(aday) < thDay(bday))
+            if ((aday) < (bday))
                 return -1;
-            if (thDay(aday) > thDay(bday))
+            if ((aday) > (bday))
                 return 1;
             return 0;
         }
@@ -75,7 +65,7 @@
             nb=patt2.lastIndex;
             btime=btxt.substring(nb-1,nb+1);
 
-           if (atime < btime)
+            if (atime < btime)
                 return -1;
             if (atime > btime)
                 return 1;
@@ -155,25 +145,25 @@
                 switch(noOfDayInWeek)
                 {
                     case 1:
-                        subject_1.push(subject_all[i]);
-                        break;
+                    subject_1.push(subject_all[i]);
+                    break;
                     case 2:
-                        subject_2.push(subject_all[i]);
-                        break;
+                    subject_2.push(subject_all[i]);
+                    break;
                     case 3:
-                        subject_3.push(subject_all[i]);
-                        break;
+                    subject_3.push(subject_all[i]);
+                    break;
                     case 4:
-                        subject_4.push(subject_all[i]);
-                        break;
+                    subject_4.push(subject_all[i]);
+                    break;
                     case 5:
-                        subject_5.push(subject_all[i]);
-                        break;
+                    subject_5.push(subject_all[i]);
+                    break;
                     case 6:
-                        subject_6.push(subject_all[i]);
-                        break;
+                    subject_6.push(subject_all[i]);
+                    break;
                     default://7
-                      subject_7.push(subject_all[i]);
+                    subject_7.push(subject_all[i]);
                 }
             }
         }
@@ -181,13 +171,10 @@
         // print
         //for (var i=0;i<number;i++){ 
             function printSubjectInDate(entry){
-                $("body").append("<p>");
-    //$("body").append(entry.studytime.innerHTML.substring(studytime.indexOf(".")+2,studytime.indexOf(".")+14));
+                $("body").append("<br/>");
+                $("body").append(entry.studytime.innerHTML.substring(studytime.indexOf(".")+2,studytime.indexOf(".")+14));
                 $("body").append(" "+entry.sname.innerHTML);
-                $("body").append(" ( SEC: "+entry.section.innerHTML+")<br/>");
-                $("body").append(" "+entry.room.innerHTML);
-                $("body").append(" : "+entry.build.innerHTML);
-                $("body").append("</p>");
+                $("body").append(" ( SEC: "+entry.section.innerHTML+")");
             }
 
 
@@ -201,32 +188,32 @@
 
 
             $("body").append("<br/>DAY 1 :");
-            $("body").append(subject_1[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
+            $("body").append(subject_1[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
             subject_1.forEach(function(entry) {
                 printSubjectInDate(entry);
                 
             });
 
             $("body").append("<br/>DAY 2 :");
-            $("body").append(subject_2[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
+            $("body").append(subject_2[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
             subject_2.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
 
             $("body").append("<br/>DAY 3 :");
-            $("body").append(subject_3[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
+            $("body").append(subject_3[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
             subject_3.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
 
             $("body").append("<br/>DAY 4 :");
-            $("body").append(subject_4[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
+            $("body").append(subject_4[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
             subject_4.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
 
             $("body").append("<br/>DAY 5 :");
-            $("body").append(subject_5[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
+            $("body").append(subject_5[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+1));
             subject_5.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
@@ -245,20 +232,3 @@
 
         //}
     }
-    </script>
-
-</head>
-<body>
-    <ul id="results">VerbalExpressions</ul>
-    <script>
-        $.get('http://161.246.5.237/web/jsregex/ce.html',function(data){
-            document.write(data);            
-            //alert("fck");
-            window.setTimeout(getTB,50);
-            //getTB();
-        });
-
-    </script>
-
-</body>
-</html>
