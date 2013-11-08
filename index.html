@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Language" content="th">
     <!-- <meta http-equiv="Content-Type" content="text/html; charset=/windows-874"> -->
-    <title>VerbalExpressions example</title>
+    <title>Study table Tramformer V. 0.1</title>
     <script src='http://161.246.5.237/web/jsregex/jquery-1.10.2.js' type='text/javascript'></script>
     <script src='http://161.246.5.237/web/jsregex/angular.js' type='text/javascript'></script>
     <script src='http://161.246.5.237/web/jsregex/studytable.js' type='text/javascript'></script>
@@ -13,19 +13,19 @@
     function getTB(){
         //thai day formation
         function thDay(d){
-            if(d=="จ"){
+            if(d=="จ"||d=="¨"){
                 return 1;
             }
-            else if(d=="อ"){
+            else if(d=="อ"||d=="Í"){
                 return 2;
             }
-            else if(d=="พ"){
+            else if(d=="พ"||d=="¾"){
                 return 3;
             }
-            else if(d=="พฤ"){
+            else if(d=="พฤ"||d=="¾Ä"){
                 return 4;
             }
-            else if(d=="ศ"){
+            else if(d=="ศ"||d=="È"){
                 return 5;
             }
             else if(d=="ส"){
@@ -251,7 +251,6 @@
 
             // merge array
             subject_week = subject_1.concat(subject_2,subject_3,subject_4,subject_5,subject_6,subject_7);
-            //console.log(JSON.stringify(subject_week));
 
             newButton = document.createElement('input');
             newButton.type = 'button';
@@ -263,30 +262,11 @@
             $("body").append("<br/>");
             $("body").append(newButton);
             $("body2").append(newButton);
-            /*
-            subject_week.forEach(function(entry) {
-                console.log(entry.sday);
-                console.log(entry.sname);
-            });*/
-
-            /*$.ajax({
-                url: 'getTable.php',
-                type: 'POST',
-                data: {sheets:JSON.stringify(subject_week)},
-                dataType: "json",
-                success : function (data) {
-                    alert("Success!");
-                }
-            });*/
- method = "post"; // Set method to post by default if not specified.
-
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
+            
+    method = "post";
     var form = document.createElement("form");
     form.setAttribute("method", method);
     form.setAttribute("action", "getTable.php");
-
-    
         
             var hiddenField = document.createElement("input");
             hiddenField.setAttribute("type", "text");
@@ -294,8 +274,6 @@
             hiddenField.setAttribute("value", JSON.stringify(subject_week));
 
             form.appendChild(hiddenField);
-         
-    
 
     document.body.appendChild(form);
     form.submit();
@@ -306,15 +284,59 @@
 
 </head>
 <body>
-    <ul id="results">VerbalExpressions</ul>
-    <button class="btn btn-large" type="button">Large button</button>
+    <ul id="results">ใส่ไฟล์ที่ได้จากหน้าเว็บ reg.kmitl.ac.th</ul>
+    <input type="file" id="files" name="file" />
+<span class="readBytesButtons">
+  <button>Next</button>
+</span>
+
     <script>
-        $.get('http://161.246.5.237/web/jsregex/ce.html',function(data){
+        /*$.get('http://161.246.5.237/web/jsregex/ce.html',function(data){
             document.write(data);
             window.setTimeout(getTB,50);
-        });
+        });*/
 
     </script>
+
+<script>
+  function readBlob(opt_startByte, opt_stopByte) {
+
+    var files = document.getElementById('files').files;
+    if (!files.length) {
+      alert('Please select a file!');
+      return;
+    }
+
+    var file = files[0];
+    var start = parseInt(opt_startByte) || 0;
+    var stop = parseInt(opt_stopByte) || file.size - 1;
+
+    var reader = new FileReader();
+
+    // If we use onloadend, we need to check the readyState.
+    reader.onloadend = function(evt) {
+      if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+       /* document.getElementById('byte_content').textContent = evt.target.result;
+        document.getElementById('byte_range').textContent = 
+['Read bytes: ', start + 1, ' - ', stop + 1,' of ', file.size, ' byte file'].join('');*/
+             //alert(evt.target.result);
+            document.write(evt.target.result);
+            window.setTimeout(getTB,50);
+      }
+    };
+
+    var blob = file.slice(start, stop + 1);
+    reader.readAsBinaryString(blob);
+  }
+  
+  document.querySelector('.readBytesButtons').addEventListener('click', function(evt) {
+    if (evt.target.tagName.toLowerCase() == 'button') {
+      var startByte = evt.target.getAttribute('data-startbyte');
+      var endByte = evt.target.getAttribute('data-endbyte');
+      readBlob(startByte, endByte);
+    }
+  }, false);
+</script>
 
 </body>
 </html>

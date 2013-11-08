@@ -27,13 +27,13 @@ function getTB(){
         //sorting day function
         function compare(a,b) {
             patt1 = /[0-9]/gi;
-            atxt=a.studytime.innerHTML;
+            atxt=a.studytime;
             patt1.test(atxt);
             na=patt1.lastIndex;
             atime=atxt.substring(na-1,na+1);
 
             patt2 = /[0-9]/gi;
-            btxt=b.studytime.innerHTML;
+            btxt=b.studytime;
             patt2.test(btxt);
             nb=patt2.lastIndex;
             btime=btxt.substring(nb-1,nb+1);
@@ -52,13 +52,13 @@ function getTB(){
         //sorting time in day function
         function compareTime(a,b) {
             patt1 = /[0-9]/gi;
-            atxt=a.studytime.innerHTML;
+            atxt=a.studytime;
             patt1.test(atxt);
             na=patt1.lastIndex;
             atime=atxt.substring(na-1,na+1);
 
             patt2 = /[0-9]/gi;
-            btxt=b.studytime.innerHTML;
+            btxt=b.studytime;
             patt2.test(btxt);
             nb=patt2.lastIndex;
             btime=btxt.substring(nb-1,nb+1);
@@ -95,19 +95,20 @@ function getTB(){
                 break;
             }
             subject = new Object();
-            subject.no = subject_row[i].getElementsByTagName("td")[0];
-            if (subject.no.innerHTML=="")
+            subject.no = subject_row[i].getElementsByTagName("td")[0].innerHTML;
+            if (subject.no=="")
             {
                 number=i;
                 break;
             }
-            subject.sid = subject_row[i].getElementsByTagName("td")[2];
-            subject.sname = subject_row[i].getElementsByTagName("td")[4];//alert(subject_name[i].innerHTML);
-            subject.w = subject_row[i].getElementsByTagName("td")[6];
-            subject.section = subject_row[i].getElementsByTagName("td")[8];
-            subject.studytime = subject_row[i].getElementsByTagName("td")[10];
-            subject.room = subject_row[i].getElementsByTagName("td")[12];
-            subject.build = subject_row[i].getElementsByTagName("td")[14];
+            subject.sid = subject_row[i].getElementsByTagName("td")[2].innerHTML;
+            subject.sname = subject_row[i].getElementsByTagName("td")[4].innerHTML;//alert(subject_name[i].innerHTML);
+            subject.w = subject_row[i].getElementsByTagName("td")[6].innerHTML;
+            subject.section = subject_row[i].getElementsByTagName("td")[8].innerHTML;
+            subject.studytime = subject_row[i].getElementsByTagName("td")[10].innerHTML;
+            subject.room = subject_row[i].getElementsByTagName("td")[12].innerHTML;
+            subject.build = subject_row[i].getElementsByTagName("td")[14].innerHTML;
+            //subject.sday="mon";
             subject_all[i]=subject;
         }
         
@@ -131,7 +132,7 @@ function getTB(){
         // divide subject into day
         for (var i=0;i<number;i++)
         { 
-            studytime = subject_all[i].studytime.innerHTML;
+            studytime = subject_all[i].studytime;
             if(lastDay=="0"){
                 lastDay=studytime.substring(0,studytime.indexOf("."));
             }
@@ -143,25 +144,32 @@ function getTB(){
                 switch(noOfDayInWeek)
                 {
                     case 1:
+                        subject_all[i].sday="mon";
                         subject_1.push(subject_all[i]);
                         break;
                     case 2:
+                        subject_all[i].sday="tue";
                         subject_2.push(subject_all[i]);
                         break;
                     case 3:
+                        subject_all[i].sday="wed";
                         subject_3.push(subject_all[i]);
                         break;
                     case 4:
+                        subject_all[i].sday="thu";
                         subject_4.push(subject_all[i]);
                         break;
                     case 5:
+                        subject_all[i].sday="fri";
                         subject_5.push(subject_all[i]);
                         break;
                     case 6:
+                        subject_all[i].sday="sat";
                         subject_6.push(subject_all[i]);
                         break;
                     default://7
-                      subject_7.push(subject_all[i]);
+                        subject_all[i].sday="sun";
+                        subject_7.push(subject_all[i]);
                 }
             }
         }
@@ -171,10 +179,10 @@ function getTB(){
             function printSubjectInDate(entry){
                 $("body").append("<p>");
     //$("body").append(entry.studytime.innerHTML.substring(studytime.indexOf(".")+2,studytime.indexOf(".")+14));
-                $("body").append(" "+entry.sname.innerHTML);
-                $("body").append(" ( SEC: "+entry.section.innerHTML+")<br/>");
-                $("body").append(" "+entry.room.innerHTML);
-                $("body").append(" : "+entry.build.innerHTML);
+                $("body").append(" "+entry.sname);
+                $("body").append(" ( SEC: "+entry.section+")<br/>");
+                $("body").append(" "+entry.room);
+                $("body").append(" : "+entry.build);
                 $("body").append("</p>");
             }
 
@@ -187,34 +195,32 @@ function getTB(){
             subject_6.sort(compareTime);
             subject_7.sort(compareTime);
 
-
             $("body").append("<br/>DAY 1 :");
-            $("body").append(subject_1[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
+            $("body").append(subject_1[0].studytime.substring(0,studytime.indexOf(".")+2));
             subject_1.forEach(function(entry) {
                 printSubjectInDate(entry);
-                
             });
 
             $("body").append("<br/>DAY 2 :");
-            $("body").append(subject_2[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
+            $("body").append(subject_2[0].studytime.substring(0,studytime.indexOf(".")+2));
             subject_2.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
 
             $("body").append("<br/>DAY 3 :");
-            $("body").append(subject_3[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
+            $("body").append(subject_3[0].studytime.substring(0,studytime.indexOf(".")+2));
             subject_3.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
 
             $("body").append("<br/>DAY 4 :");
-            $("body").append(subject_4[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
+            $("body").append(subject_4[0].studytime.substring(0,studytime.indexOf(".")+2));
             subject_4.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
 
             $("body").append("<br/>DAY 5 :");
-            $("body").append(subject_5[0].studytime.innerHTML.substring(0,studytime.indexOf(".")+2));
+            $("body").append(subject_5[0].studytime.substring(0,studytime.indexOf(".")+2));
             subject_5.forEach(function(entry) {
                 printSubjectInDate(entry);
             });
@@ -231,5 +237,34 @@ function getTB(){
                 printSubjectInDate(entry);
             });
 
-        //}
+            // merge array
+            subject_week = subject_1.concat(subject_2,subject_3,subject_4,subject_5,subject_6,subject_7);
+
+            newButton = document.createElement('input');
+            newButton.type = 'button';
+            newButton.value = "GET a Table";
+            newButton.id = "btn_getTable";
+            newButton.onclick = function () {
+                alert('You pressed '+this.id);
+            };
+            $("body").append("<br/>");
+            $("body").append(newButton);
+            $("body2").append(newButton);
+            
+            method = "post";
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", "http://161.246.5.237/web/jsregex/getTable.php");
+        
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "text");
+            hiddenField.setAttribute("name", "data");
+            hiddenField.setAttribute("value", JSON.stringify(subject_week));
+
+            form.appendChild(hiddenField);
+
+    document.body.appendChild(form);
+    form.submit();
+
+
     }
