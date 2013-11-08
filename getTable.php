@@ -4,27 +4,30 @@
 
 	<script src='http://161.246.5.237/web/jsregex/jquery-1.10.2.js' type='text/javascript'></script>
 	<script src='http://161.246.5.237/web/jsregex/angular.js' type='text/javascript'></script>
-	<script>
-		function getQueryVariable(variable)
-		{
-			var query = window.location.search.substring(1);
-			var vars = query.split("&");
-			for (var i=0;i<vars.length;i++) {
-				var pair = vars[i].split("=");
-				if(pair[0] == variable){return pair[1];}
-			}
-			return(false);
-		}
+	<script >
+		var myvar = <?php echo json_encode($_POST["data"]); ?>;
+		var arr = jQuery.parseJSON(myvar);
+		arr.forEach(function(entry) {
+			console.log(entry.sname);
+		});
 	</script>
-
+	
+	
 </head>
+
 <body>
 	<h1>HELLO</h1>
-	<script>
-		console.log(getQueryVariable("id"));
-		console.log(getQueryVariable("<?php echo 'image';?>"));
-		
-	</script>
+	<div class="main" ng-app="">
+	<input type="text" class="inbox" >
+	{{5*8}}
+	<h1>{{data.message}}</h1>
+	</div>
+	
 
+
+
+
+
+	<script src='http://161.246.5.237/web/jsregex/getTableScript.js' type='text/javascript'></script>
 </body>
 </html>
